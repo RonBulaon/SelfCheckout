@@ -34,14 +34,14 @@ Using **Django** Web Framework as backend, this web app uses **Alma APIs** to pr
 1. Install [Docker](https://docs.docker.com/get-docker/).
 2. If you have [git](https://git-scm.com/downloads) installed clone this repository like this,
    ```bash
-   $ git clone https://github.com/RonBulaon/selfcheckout.git
+   $ git clone https://github.com/RonBulaon/SelfCheckout.git
    ```
    or download and extract to your local machine. <br />
    <img src="img/dl.gif" width="200">
 
-3. Once cloned/downloaded open a command line, and navigate inside the folder ```selfcheckout```.
+3. Once cloned/downloaded open a command line, and navigate inside the folder ```SelfCheckout```.
    ```bash
-   $ cd /<path_to_folder>/selfcheckout
+   $ cd /<path_to_folder>/SelfCheckout
    ```
 4. Using a text editor, open  ```docker-compose.yml``` and change the following values to match your settings.
    ```yml
