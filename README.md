@@ -1,8 +1,8 @@
 <h1>Self Checkout</h1>
 
-This web application was presented at [IGeLU 2021 Digital Conference](https://igelu.org/archive-of-presentations/2021-digital-conference), to show how a **Two-Factor Authentication** can be integrated to a self-service kiosk without heavy integration to third-party service providers. Thus making it secure, user friendly and at the same time minimize the possibility of other users using an account without the patron's knowledge.
+This web application was presented at [IGeLU 2021 Digital Conference](https://igelu.org/archive-of-presentations/2021-digital-conference), to show how a **Two-Factor Authentication** can be integrated to a self-service kiosk without heavy integration to third-party service providers. Thus, making it secure, user friendly and at the same time minimize the possibility of other users using an account without the patron's knowledge.
 
-Using **Django** Web Framework as backend, this web app uses **Alma APIs** to process patron fulfilments  requests. Authentication is done by requiring students to provide their students' identification card, email access to receive the one-time passwords.
+Using **Django** Web Framework as backend, this web app uses **Alma APIs** to process patron fulfilment requests. Authentication is done by requiring students to provide their identification card, and email access to receive the one-time passwords.
 
 <h2>Table of Contents</h2>
 <!-- TOC -->
