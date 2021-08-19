@@ -36,7 +36,7 @@ Using **Django** Web Framework as backend, this web app uses **Alma APIs** to pr
    ```bash
    $ git clone https://github.com/RonBulaon/selfcheckout.git
    ```
-   or download and extract to your local machine.
+   or download and extract to your local machine. <br />
    <img src="img/dl.gif" width="200">
 
 3. Once cloned/downloaded open a command line, and navigate inside the folder ```selfcheckout```.
