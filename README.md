@@ -18,7 +18,7 @@ Using **Django** Web Framework as backend, this web app uses **Alma APIs** to pr
 <!-- /TOC -->
 
 ## How It Looks Like
-<img src="img/demonstration.gif" width="600">
+<img src="img/demonstration.gif" width="800">
 
 ## How It Works
 <img src="img/flow.png" width="800">
