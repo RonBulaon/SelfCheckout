@@ -1,0 +1,235 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <title>Self Checkout</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+  <style>
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      user-select: none;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
+  </style>
+
+  <!-- Custom styles for this template -->
+  <link href="{% static 'css/starter-template.css' %}" rel="stylesheet">
+  <script src="{% static 'js/html5-qrcode.min.js' %}"></script>
+
+</head>
+
+<body>
+
+  <div class="col-lg-12 mx-auto p-3 py-md-5">
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark border-bottom d-flex ">
+      <div class="container-fluid navbar-text">
+        <span class="fs-1 fw-bold">Library Self-Checkout</span>
+      </div>
+    </nav>
+
+    <main>
+      <br /><br />
+      <hr />
+      {% for message in messages %}
+      <div class="alert {{ message.tags }}" role="alert">
+        {{ message }}
+      </div>
+      {% endfor %}
+      <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+          <button class="nav-link fs-3  disabled" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home"
+            type="button" role="tab" aria-controls="nav-home" aria-selected="true">Step 1</button>
+          <button class="nav-link fs-3 fw-bold active" id="nav-profile-tab" data-bs-toggle="tab"
+            data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile"
+            aria-selected="false">Step 2</button>
+          <button class="nav-link fs-3 disabled" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact"
+            type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Step 3</button>
+          <button class="nav-link fs-3 disabled" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact"
+            type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Step 4</button>
+        </div>
+      </nav>
+      <div class="tab-content  border border-top-0" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+          <div class="container">
+            <div class="row" style="height: 410px;">
+              <div class="col-6">
+                <p><br>
+                  <h1>
+                    <span class="fw-light">Place your</span>
+                    <span class="fw-bold">Library Card</span>
+                    <span class="fw-light">or</span>
+                    <span class="fw-bold">Student identification</span>
+                    <br>
+                    <span class="fw-light">in front of the </span>
+                    <span class="fw-bold">camera!</span>
+                  </h1><br>
+                </p>
+              </div>
+              <div class="col-6">
+                <p>
+                  <div id="qr-reader" style="width:500px">Scanner Loading...</div>
+                  <div id="qr-reader-results"></div>
+                </p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <br>
+      <div class="row g-5">
+        <div class="col-md-6">
+          {% if bookDetails.book %}
+          <div class="card">
+            <div class="card-header fs-3">
+              Item for Loan
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">{{ bookDetails.title }}</h5>
+              <h5 class="card-title">By : {{ bookDetails.author }}</h5>
+              <p class="card-text"><br />
+                Call No.: {{ bookDetails.call_number }} <br />
+                ISBN: {{ bookDetails.isbn }} <br />
+                Edition: {{ bookDetails.complete_edition }} <br />
+              </p>
+            </div>
+          </div>
+          {% endif %}
+        </div>
+
+        <div class="col-md-6">
+          {% if patronDetails.patron %}
+          <div class="card">
+            <div class="card-header fs-3">
+              Barrower
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">{{ patronDetails.patron_name }}</h5>
+              <h5 class="card-title">{% if patronDetails.total_sum > 0 %}
+                Fine : <span class="fw-bold">{{ patronDetails.total_sum }}</span>
+                {% endif %}
+              </h5>
+              <h5 class="card-title">{{ patronDetails.email }}</h5>
+              <h5 class="card-title">{{ patronDetails.status }}</h5>
+              <h5 class="card-title">&nbsp;</h5>
+              <h5 class="card-title">&nbsp;</h5>
+              <br />
+            </div>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </main>
+
+  </div>
+  <footer class="footer mt-auto py-3 bg-light">
+    <div class="container">
+      <span class="text-muted align-middle">Ron Bulaon &middot; &copy; 2021</span>
+    </div>
+    <div class="container text-end">
+      Idle countdown <span id="seconds">180</span> seconds before restart.
+    </div>
+  </footer>
+
+  <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+  <script>
+    var resultContainer = document.getElementById('qr-reader-results');
+    var lastResult, countResults = 0;
+
+    function onScanSuccess(decodedText, decodedResult) {
+      if (decodedText !== lastResult) {
+        ++countResults;
+        lastResult = decodedText;
+        // Handle on success condition with the decoded message.
+        console.log(`Scan result ${decodedText}`, decodedResult);
+      }
+    }
+
+    // This method will trigger user permissions
+    Html5Qrcode.getCameras().then(devices => {
+      /**
+       * devices would be an array of objects of type:
+       * { id: "id", label: "label" }
+       */
+      if (devices && devices.length) {
+        var cameraId = devices[0].id;
+        console.log(cameraId)
+
+        const html5QrCode = new Html5Qrcode("qr-reader");
+
+        html5QrCode.start(
+            cameraId, // retreived in the previous step.
+            {
+              fps: 10, // sets the framerate to 10 frame per second
+              qrbox: 250 // sets only 250 X 250 region of viewfinder to
+              // scannable, rest shaded.
+            },
+            qrCodeMessage => {
+              // do something when code is read. For example:
+              console.log(`QR Code detected: ${qrCodeMessage}`);
+              html5QrCode.stop()
+              window.location.href = window.location.origin + '/patron/'.concat(`${qrCodeMessage}`);
+              console.log(`--> ${qrCodeMessage}`);
+            },
+            errorMessage => {
+              // parse error, ideally ignore it. For example:
+              console.log(`QR Code no longer in front of camera.`);
+            })
+          .catch(err => {
+            // Start failed, handle it. For example,
+            console.log(`Unable to start scanning, error: ${err}`);
+          });
+
+
+      }
+    }).catch(err => {
+      // handle err
+    });
+  </script>
+  <script>
+    // Countdown timer for redirecting to another URL after several seconds
+
+    var seconds = 180; // seconds for HTML
+    var foo; // variable for clearInterval() function
+
+    function redirect() {
+      document.location.href = window.location.origin;
+    }
+
+    function updateSecs() {
+      document.getElementById("seconds").innerHTML = seconds;
+      seconds--;
+      if (seconds == -1) {
+        clearInterval(foo);
+        redirect();
+      }
+    }
+
+    function countdownTimer() {
+      foo = setInterval(function () {
+        updateSecs()
+      }, 1000);
+    }
+
+    countdownTimer();
+  </script>
+</body>
+
+</html>
