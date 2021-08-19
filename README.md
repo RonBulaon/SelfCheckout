@@ -16,7 +16,6 @@ Using **Django** Web Framework as backend, this web app uses **Alma APIs** to pr
 - [License](#license)
 
 <!-- /TOC -->
-<br/>
 
 ## How It Looks Like
 <img src="img/demonstration.gif" width="600">
@@ -76,6 +75,7 @@ Using **Django** Web Framework as backend, this web app uses **Alma APIs** to pr
    * Use database to save settings.
    * Implement other fulfilment services.
    * Add in an RFID module.
+   * Better utilization of Django templates.
 
 ## Credits
 The barcode and QR code scanner used is made by [mebjas](https://github.com/mebjas) you can find more information on the [html5-qrcode](https://github.com/mebjas/html5-qrcode) project repository.
