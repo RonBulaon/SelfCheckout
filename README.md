@@ -10,7 +10,7 @@ Using **Django** Web Framework as backend, this web app uses **Alma APIs** to pr
 - [How It Looks Like](#how-it-looks-like)
 - [How It Works](#how-it-works)
 - [You Will Need](#you-will-need)
-- [Installation Notes](#installation-notes)
+- [Installation](#installation)
 - [Notes and Roadmap](#notes-and-roadmap)
 - [Credits](#credits)
 - [License](#license)
@@ -30,14 +30,14 @@ Using **Django** Web Framework as backend, this web app uses **Alma APIs** to pr
 * [Docker](https://docs.docker.com/get-docker/)
 * [Python](https://www.python.org/) with [Django](https://www.djangoproject.com/) Web Framework
 
-## Installation Notes
+## Installation 
 1. Install [Docker](https://docs.docker.com/get-docker/).
 2. If you have [git](https://git-scm.com/downloads) installed clone this repository like this,
    ```bash
    $ git clone https://github.com/RonBulaon/SelfCheckout.git
    ```
    or download and extract to your local machine. <br />
-   <img src="img/dl.gif" width="200">
+   <img src="img/dl.gif" width="300">
 
 3. Once cloned/downloaded open a command line, and navigate inside the folder ```SelfCheckout```.
    ```bash
