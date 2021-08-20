@@ -55,10 +55,10 @@ Using **Django** Web Framework as backend, this web app uses **Alma APIs** to pr
    ```
    *Notes*:
     * I'm using [Gmail](https://mail.google.com/) so I put in my exact ```EMAIL``` and ```PASSWORD``` of my google mail account.
-    * For ```HOST``` I used ```smtp.gmail.com``` since I'm using gmail. You will also need to [enable less secure apps](https://www.google.com/settings/security/lesssecureapps) for this account.
-    * For ``CIRC_DESK`` and ``LIBRARY`` use what ever alma configuration you have or you can also verify yours from [here](https://developers.exlibrisgroup.com/alma/apis/docs/xsd/rest_item_loan.xsd/?tags=POST) (*login required*).
-    * Values for ``API`` must be generated for your institution [here](https://developers.exlibrisgroup.com/manage/).
-5. Any source code modification should be done here if there is any.
+    * For ```HOST``` I used ```smtp.gmail.com``` since I'm using gmail. You will also need to [enable less secure apps](https://www.google.com/settings/security/lesssecureapps) for the email account.
+    * For ``CIRC_DESK`` and ``LIBRARY`` use whatever alma configuration you have or verify yours from [here](https://developers.exlibrisgroup.com/alma/apis/docs/xsd/rest_item_loan.xsd/?tags=POST) (*login required*).
+    * Generate values for ``API`` from [here](https://developers.exlibrisgroup.com/manage/).
+5. [Optional] Any source code modification should be done here if there is any.
 6. Verify that **Docker** is running in the background. Then execute this command:
    ```bash
    $ docker-compose up --build 
@@ -76,10 +76,10 @@ Using **Django** Web Framework as backend, this web app uses **Alma APIs** to pr
    * Implement other fulfilment services.
    * Add in an RFID module.
    * Better utilization of Django templates.
+   * Include test scripts.
 
 ## Credits
 The barcode and QR code scanner used is made by [mebjas](https://github.com/mebjas) you can find more information on the [html5-qrcode](https://github.com/mebjas/html5-qrcode) project repository.
-
 
 ## License
 Copyright 2021 **Ron Bulaon** <br/> [Apache License Version 2.0](LICENSE)
